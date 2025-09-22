@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Internal Workflow</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+	<h1>Internal Workflow Automation Platform</h1>
+	<div>
+		<a th:href="@{/}">Home</a>
+		<span th:if="${#httpServletRequest.userPrincipal != null}">
+			|
+			Logged in as <strong th:text="${#httpServletRequest.userPrincipal.name}"></strong>
+			|
+			<a th:href="@{/logout}">Logout</a>
+		</span>
+		<span th:if="${#httpServletRequest.userPrincipal == null}">
+			|
+			<a th:href="@{/login}">Login</a> | <a th:href="@{/signup}">Sign up</a>
+		</span>
+	</div>
+	<hr />
+	<p>Backend is up. Use Postman for API testing.</p>
+	<div th:if="${#request.isUserInRole('ADMIN')}">
+		<p><a th:href="@{/admin/audit}">View Audit Logs</a></p>
+	</div>
+</body>
+</html>

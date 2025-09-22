@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<header class="topbar"><div class="brand"><a th:href="@{/app/dashboard}">Workflow</a></div></header>
+<main class="container">
+    <h2>Profile</h2>
+    <p>Username: <strong th:text="${username}"></strong></p>
+    <p><a th:href="@{/logout}">Logout</a></p>
+</main>
+</body>
+</html>
+
+

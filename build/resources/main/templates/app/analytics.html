@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <style>
+        .bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem; }
+        .bar { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.75rem; }
+        .bar-label { color: #6b7280; }
+        .bar-value { font-size: 1.4rem; font-weight: bold; }
+        .grid { margin-top: 1rem; }
+        pre { background: #f9fafb; padding: 0.75rem; border-radius: 8px; border: 1px solid #e5e7eb; }
+    </style>
+    <script>
+        async function loadStats() {
+            const res = await fetch('/analytics/pending-vs-completed');
+            const stats = await res.json();
+            const map = {
+                PENDING: document.getElementById('valP'),
+                IN_PROGRESS: document.getElementById('valIP'),
+                COMPLETED: document.getElementById('valC'),
+                REJECTED: document.getElementById('valR')
+            };
+            Object.entries(stats).forEach(([k,v]) => {
+                if (map[k]) map[k].innerText = v;
+            });
+        }
+        window.addEventListener('DOMContentLoaded', loadStats);
+    </script>
+</head>
+<body>
+<header class="topbar"><div class="brand"><a th:href="@{/app/dashboard}">Workflow</a></div></header>
+<main class="container">
+    <h2>Analytics</h2>
+    <div class="bars">
+        <div class="bar"><div class="bar-label">Pending</div><div class="bar-value" id="valP">0</div></div>
+        <div class="bar"><div class="bar-label">In Progress</div><div class="bar-value" id="valIP">0</div></div>
+        <div class="bar"><div class="bar-label">Completed</div><div class="bar-value" id="valC">0</div></div>
+        <div class="bar"><div class="bar-label">Rejected</div><div class="bar-value" id="valR">0</div></div>
+    </div>
+</main>
+</body>
+</html>
+
+

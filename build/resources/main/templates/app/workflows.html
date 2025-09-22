@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Workflows</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <script>
+        async function fetchWorkflows() {
+            const res = await fetch('/workflows');
+            const data = await res.json();
+            const tbody = document.getElementById('tbody');
+            tbody.innerHTML = '';
+            (data.content || data).forEach(w => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${w.id}</td><td>${w.name}</td><td>${w.createdBy?.username ?? ''}</td><td>${w.createdAt}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+        window.addEventListener('DOMContentLoaded', fetchWorkflows);
+    </script>
+</head>
+<body>
+<header class="topbar"><div class="brand"><a th:href="@{/app/dashboard}">Workflow</a></div></header>
+<main class="container">
+    <h2>Workflows</h2>
+    <table>
+        <thead><tr><th>ID</th><th>Name</th><th>Created By</th><th>Created At</th></tr></thead>
+        <tbody id="tbody"></tbody>
+    </table>
+</main>
+</body>
+</html>
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7fafc; }
+        .container { max-width: 480px; margin: 4rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .title { margin: 0 0 1rem; }
+        .field { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.25rem; color: #374151; }
+        input { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; }
+        .error { color: #b91c1c; font-size: 0.875rem; margin-top: 0.25rem; }
+        .btn { width: 100%; background: #16a34a; color: #fff; border: none; padding: 0.7rem 1rem; border-radius: 6px; cursor: pointer; }
+        .btn:hover { background: #15803d; }
+        .meta { margin-top: 0.75rem; text-align: center; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="title">Create account</h2>
+    <form th:action="@{/signup}" th:object="${signup}" method="post" novalidate>
+        <div class="field">
+            <label for="username">Username</label>
+            <input id="username" th:field="*{username}" type="text" required />
+            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" th:field="*{email}" type="email" required />
+            <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" th:field="*{password}" type="password" minlength="6" required />
+            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <button type="submit" class="btn">Sign up</button>
+    </form>
+    <div class="meta">
+        <a th:href="@{/login}">Already have an account? Sign in</a>
+    </div>
+</div>
+</body>
+</html>
+
+

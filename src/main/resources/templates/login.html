@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7fafc; }
+        .container { max-width: 420px; margin: 5rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .title { margin: 0 0 1rem; }
+        .field { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.25rem; color: #374151; }
+        input { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; }
+        .btn { width: 100%; background: #2563eb; color: #fff; border: none; padding: 0.7rem 1rem; border-radius: 6px; cursor: pointer; }
+        .btn:hover { background: #1d4ed8; }
+        .meta { margin-top: 0.75rem; text-align: center; }
+        .alert { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.95rem; }
+        .alert-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error')) {
+                const el = document.getElementById('loginError');
+                if (el) el.style.display = 'block';
+            }
+        });
+    </script>
+    </head>
+<body>
+<div class="container">
+    <h2 class="title">Sign in</h2>
+
+    <div id="loginError" class="alert alert-error" style="display:none;">Invalid username or password.</div>
+    <div th:if="${signupSuccess}" class="alert alert-success">Account created. Please sign in.</div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" required />
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required />
+        </div>
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <div class="meta">
+        <a th:href="@{/signup}">Create an account</a>
+    </div>
+</div>
+</body>
+</html>
+
+

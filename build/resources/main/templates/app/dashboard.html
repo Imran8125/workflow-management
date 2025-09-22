@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<header class="topbar">
+    <div class="brand"><a th:href="@{/app/dashboard}">Workflow</a></div>
+    <div class="user">Hi, <span th:text="${username}"></span> | <a th:href="@{/logout}">Logout</a></div>
+</header>
+<main class="container">
+    <h2>Overview</h2>
+    <div class="cards">
+        <div class="card"><div class="card-title">Pending Tasks</div><div class="card-value" th:text="${pendingCount}">0</div></div>
+        <div class="card"><div class="card-title">Completed Tasks</div><div class="card-value" th:text="${completedCount}">0</div></div>
+        <div class="card"><div class="card-title">Total Workflows</div><div class="card-value" th:text="${workflowsCount}">0</div></div>
+    </div>
+    <nav class="nav">
+        <a th:href="@{/app/tasks}">My Tasks</a>
+        <a th:href="@{/app/workflows}">Workflows</a>
+        <span th:if="${#request.isUserInRole('ADMIN')}">
+            <a th:href="@{/app/analytics}">Analytics</a>
+            <a th:href="@{/admin/audit}">Audit Logs</a>
+            <a th:href="@{/app/users}">Users</a>
+        </span>
+    </nav>
+</main>
+</body>
+</html>
+
+
