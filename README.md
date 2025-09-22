@@ -4,7 +4,6 @@
 [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-42.7.4-blue.svg)](https://www.postgresql.org/)
 [![Gradle](https://img.shields.io/badge/Gradle-Build-green.svg)](https://gradle.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A comprehensive Spring Boot application designed to automate and manage internal business workflows such as leave requests, approvals, expense claims, and other organizational processes. Built with a focus on role-based access control, REST API architecture, and seamless integration capabilities.
 
@@ -220,35 +219,6 @@ audit_logs (id, action, user_id, timestamp, details)
 - **CSRF Protection** enabled
 - **Secure Headers** configuration
 
-## 🧪 Testing
-
-```bash
-# Run all tests
-./gradlew test
-
-# Run with coverage
-./gradlew test jacocoTestReport
-
-# Integration tests
-./gradlew integrationTest
-```
-
-## 📦 Deployment
-
-### **Docker Deployment**
-```dockerfile
-FROM openjdk:17-jdk-slim
-COPY build/libs/internal-workflow-*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-```
-
-```bash
-# Build and run with Docker
-docker build -t internal-workflow .
-docker run -p 8080:8080 -e DB_URL=jdbc:postgresql://host.docker.internal:5432/workflow_db internal-workflow
-```
-
 ### **Production Considerations**
 - Use environment-specific `application-prod.yml`
 - Configure proper logging levels
@@ -282,18 +252,6 @@ src/main/resources/
 4. Create REST controller in `web/api/`
 5. Add Thymeleaf template if needed
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👥 Authors
 
 - **Imran** - *Initial work* - [@Imran8125](https://github.com/Imran8125)
@@ -302,15 +260,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Spring Boot team for the excellent framework
 - PostgreSQL community for the robust database
-- Contributors who help improve this project
 
 ## 📞 Support
 
 If you have any questions or need help with setup:
 
-- 📧 Email: [your-email@example.com]
-- 🐛 Issues: [GitHub Issues](https://github.com/Imran8125/internal-workflow/issues)
-- 📖 Documentation: [Wiki](https://github.com/Imran8125/internal-workflow/wiki)
+- 📧 Email: [imran8122005@gmail.com]
 
 ---
 
